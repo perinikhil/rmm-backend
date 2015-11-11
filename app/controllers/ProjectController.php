@@ -12,7 +12,7 @@ class ProjectController extends \BaseController {
 			return Response::json([
 				'success' => false,
 				'alert' => 'Projects'.Messages::$notFound
-				]);
+			]);
 	}
 
 
@@ -45,7 +45,7 @@ class ProjectController extends \BaseController {
 			return Response::json([
 				'success' => false,
 				'alert' => 'Projects'.Messages::$notFound
-				]);
+			]);
 	}
 
 
@@ -74,14 +74,14 @@ class ProjectController extends \BaseController {
 			return Response::json([
 				'success' => false,
 				'alert' => 'Projects'.Messages::$notFound
-				]);
+			]);
 	}
 
 
 	public function destroy($id)
 	{
 		if(Project::destroy($id))
-			return Response.json(Messages::$deleteSuccess.'Project');
+			return Response::json(Messages::$deleteSuccess.'Project');
 		else
 			return Messages::$deleteFail.'Project';
 

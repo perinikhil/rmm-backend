@@ -16,6 +16,19 @@ class CreateProjectsTable extends Migration {
 		{
 			$table->increments('id');
 
+			$table->string('name');
+			$table->text('description');
+			$table->integer('sqft');
+			$table->string('locality');
+			$table->string('address');
+			$table->string('contact_name');
+			$table->string('contact_number');
+			$table->integer('bhk');
+			$table->integer('price');
+			$table->string('type');
+			$table->decimal('gps_latitude',10,7);
+			$table->decimal('gps_longitude',10,7);
+
 			$table->timestamps();
 		});
 	}

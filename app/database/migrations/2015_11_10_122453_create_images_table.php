@@ -16,6 +16,11 @@ class CreateImagesTable extends Migration {
 		{
 			$table->increments('id');
 
+			$table->integer('project_id')->unsigned();
+			$table->foreign('project_id')->references('id')->on('projects')->onUpdate('cascade')->onDelete('cascade');
+			$table->string('path');
+			$table->string('description');
+
 			$table->timestamps();
 		});
 	}

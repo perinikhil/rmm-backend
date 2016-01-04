@@ -1,5 +1,7 @@
 <?php
 
+header('Access-Control-Allow-Origin: *');
+
 Route::group(array('prefix' => 'api'), function() {
 
   Route::post('/login', function(){

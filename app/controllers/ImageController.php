@@ -10,9 +10,8 @@ class ImageController extends \BaseController {
 			return Response::json($images);
 		else
 			return Response::json([
-				'success' => false,
 				'alert' => 'Images'.Messages::$notFound
-			]);
+			], 404);
 	}
 
 
@@ -33,7 +32,6 @@ class ImageController extends \BaseController {
 				if(Image::create($details))
 				{
 					return Response::json([
-						'success' => true,
 						'alert' => Messages::$createSuccess.'image'
 					]);
 				}
@@ -41,25 +39,22 @@ class ImageController extends \BaseController {
 				{
 					File::delete($destinationPath.$fileName);
 					return Response::json([
-						'success' => false,
 						'alert' => Messages::$createFail.'image'
-					]);
+					], 400);
 				}
 			}
 			else
 			{
 				return Response::json([
-					'success' => false,
 					'alert' => Messages::$uploadFail.'image'
-				]);
+				], 400);
 			}
 		}
 		else
 		{
 			return Response::json([
-				'success' => false,
 				'alert' => 'Image'.Messages::$notFound
-			]);
+			], 404);
 		}
 	}
 
@@ -74,28 +69,16 @@ class ImageController extends \BaseController {
 			{
 				File::delete($destinationPath.$image->path);
 				return Response::json([
-					'success' => true,
 					'alert' => Messages::$deleteSuccess.'image'
 				]);
 			}
 			else
 			{
 				return Response::json([
-					'success' => false,
-					'alert' => Messages::$deleteFail.'image']);
+          'alert' => Messages::$deleteFail.'image'
+        ], 404);
 			}
 		}
 	}
 
-
-	// public function show($projectId, $imageId)
-	// {
-	// 	//
-	// }
-	//
-	//
-	// public function update($projectId, $imageId)
-	// {
-	// 	//
-	// }
 }

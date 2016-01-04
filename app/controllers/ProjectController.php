@@ -10,9 +10,8 @@ class ProjectController extends \BaseController {
 			return Response::json($projects);
 		else
 			return Response::json([
-				'success' => false,
 				'alert' => 'Projects'.Messages::$notFound
-			]);
+			], 404);
 	}
 
 
@@ -28,24 +27,22 @@ class ProjectController extends \BaseController {
 		}
 		else {
 			return Response::json([
-				'success' => false,
 				'alert' => Messages::$createFail.'project'
-			]);
+			], 400);
 		}
 	}
 
 
 	public function show($id)
 	{
-		$projects = Project::find($id);
+		$project = Project::find($id);
 
-		if($projects)
-			return Response::json($projects);
+		if($project)
+			return Response::json($project);
 		else
 			return Response::json([
-				'success' => false,
 				'alert' => 'Projects'.Messages::$notFound
-			]);
+			], 404);
 	}
 
 
@@ -58,23 +55,21 @@ class ProjectController extends \BaseController {
 			if($project->update($details))
 			{
 				return Response::json([
-					'project' => $project,	//Project::find($id)?
+					'project' => $project,
 					'alert' => Messages::$updateSuccess.'project'
 				]);
 			}
 			else {
 				return Response::json([
-					'success' => false,
 					'alert' => Messages::$updateFail.'project'
-				]);
+				], 400);
 			}
 
 		}
 		else
 			return Response::json([
-				'success' => false,
 				'alert' => 'Projects'.Messages::$notFound
-			]);
+			], 400);
 	}
 
 
@@ -83,8 +78,6 @@ class ProjectController extends \BaseController {
 		if(Project::destroy($id))
 			return Response::json(Messages::$deleteSuccess.'Project');
 		else
-			return Messages::$deleteFail.'Project';
-
-
+			return Response::json(Messages::$deleteFail.'Project', 400);
 	}
 }

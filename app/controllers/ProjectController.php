@@ -7,7 +7,13 @@ class ProjectController extends \BaseController {
 		$projects = Project::all();
 
 		if(count($projects))
-			return Response::json($projects);
+    {
+      foreach($projects as $project)
+      {
+        $project->image = $project->images()->first();
+      }
+      return Response::json($projects);
+    }
 		else
 			return Response::json([
 				'alert' => 'Projects'.Messages::$notFound
@@ -38,7 +44,10 @@ class ProjectController extends \BaseController {
 		$project = Project::find($id);
 
 		if($project)
-			return Response::json($project);
+    {
+      $project->images = $project->images;
+      return Response::json($project);
+    }
 		else
 			return Response::json([
 				'alert' => 'Projects'.Messages::$notFound

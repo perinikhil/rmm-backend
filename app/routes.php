@@ -5,12 +5,11 @@ header('Access-Control-Allow-Origin: *');
 Route::group(['prefix' => 'api'], function() {
 
   Route::post('/login', function(){
-    //$password = Hash::make(Input::get('password'));
     $password = Input::get('password');
-    if(strcmp($password, 'changeme') == 0)
+    if(Hash::check($password, '$2y$10$1yi4ULBQBgDoCEWT1.w4OOm4uCZab4r/dxs.pdMG5pknt3oUC.F3W'))
       return Response::json(['alert' => Messages::$loginSuccess]);
     else
-      return Response::json(['alert' => $password], 400);
+      return Response::json(['alert' => Messages::$loginFailed], 400);
   });
 
   Route::resource('projects', 'ProjectController', ['except' => ['create', 'edit']]);

@@ -17,7 +17,7 @@ class ImageController extends \BaseController {
 
 	public function store($projectId)
 	{
-		$destinationPath = app_path() . '/uploads/images';
+		$destinationPath = public_path() . '/uploads/images';
 		$detials = Input::all();
 		$details['project_id'] = $projectId;
 

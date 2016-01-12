@@ -2,7 +2,7 @@
 
 header('Access-Control-Allow-Origin: *');
 
-Route::group(['prefix' => 'api'], function() {
+Route::group(['prefix' => 'v1'], function() {
 
   Route::post('/login', function(){
     $password = Input::get('password');

@@ -62,7 +62,7 @@ class ImageController extends \BaseController {
 	public function destroy($projectId, $imageId)
 	{
 		$image = Image::find($imageId);
-		$destinationPath = app_path() . '/uploads/images/';
+		$destinationPath = public_path() . '/uploads/images/';
 		if($image->project_id == $projectId)
 		{
 			if(Image::destroy($imageId))
